@@ -1,0 +1,18 @@
+---
+- name: install mysql
+  apt: name=mysql-server state=present
+
+- name: Install the Python MySQLB module
+  pip: name=MySQL-python
+
+
+
+
+- name: update mysql root password for all root accounts
+  mysql_user: name=root host={{ item }} password=spil priv=*.*:ALL,GRANT
+  with_items:
+    - "{{ ansible_hostname }}"
+    - 127.0.0.1
+    - ::1
+    - localhost
+  tags: mysql

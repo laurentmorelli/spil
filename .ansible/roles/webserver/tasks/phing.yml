@@ -1,0 +1,16 @@
+---
+
+- name: Install php-pear
+  apt: name=php-pear state=present
+  become: yes
+
+- name: Setup channel discover
+  command: pear channel-discover pear.phing.info
+  become: yes
+  register: channel_result
+  changed_when: "'initialized' not in channel_result.stdout"
+  # TODO: This will always error out the first time it's run.
+  failed_when: "'already initialized' not in channel_result.stdout and 'succeeded' not in channel_result.stdout"
+
+- name: pear phing
+  pear: name=phing/phing state=present

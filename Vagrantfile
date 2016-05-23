@@ -45,4 +45,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
  end
 
 
+ # call phing configure
+ config.vm.provision :shell, privileged:false, inline: "/usr/bin/phing -f /var/www/spil/build.xml -propertyfile /var/www/spil/build.properties -verbose"
+
+
 end

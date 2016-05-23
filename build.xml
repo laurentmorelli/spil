@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="spil" default="configure">
+    <property file="build.properties" />
+
+    <target name="configure">
+
+    </target>
+
+</project>
